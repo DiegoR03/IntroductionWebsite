@@ -1,0 +1,429 @@
+:root {
+    --aurora-top: #b1002c;
+    --aurora-bottom: #00ffae;
+    --aurora-middle: #e100ff;
+    --aurora-gradient: linear-gradient(var(--sky-color), 30%, var(--aurora-top), var(--aurora-bottom), var(--aurora-middle));
+    --bg-doc: #6f8db8;
+    --cloud-bg: #ffffff;
+    --cloud-inset-shadow: #ccc;
+    --text_color: #ffffff;
+    --top-sky: #000000;
+    --sky-color: #000122;
+    --bottom-sky: #0025c9a6;
+    --sea-color: #00115a;
+}
+
+@font-face {
+  font-family: Oxanium; /* set name */
+  src: url(fonts/Oxanium.ttf); /* url of the font */
+}
+
+* {
+    margin: 0;
+    scroll-behavior: smooth;
+    font-family: Oxanium;
+}
+
+*::before,
+*::after {
+    position: absolute;
+    box-sizing: border-box;
+    content: '';
+    z-index: 1;
+}
+
+header {
+    background: linear-gradient(var(--top-sky) 0%, var(--sky-color) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+section {
+    position: relative;
+}
+
+header,
+section {
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+    overflow-y: auto;
+    gap: 1em;
+}
+
+section:nth-of-type(1) {
+    background: linear-gradient(var(--sky-color) 0%, var(--sky-color) 100%);
+}
+
+section:nth-of-type(2) {
+    background: linear-gradient(var(--sky-color) 0%, var(--sky-color) 100%);
+}
+
+section:nth-of-type(3) {
+    background: linear-gradient(var(--sky-color) 0%, var(--sky-color) 100%);
+}
+
+section:nth-of-type(4) {
+    background: linear-gradient(var(--sky-color) 20%, var(--bottom-sky) 80%, transparent 0%);
+    background-color: var(--sea-color);
+}
+
+body {
+    text-align: center;
+}
+
+h1 {
+    color: var(--text_color);
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    width: 100%;
+}
+
+h2 {
+    position: relative;
+    color: var(--text_color);
+    z-index: 2;
+    font-size: min(6vw, 48px);
+}
+
+header button {
+    font-size: min(3vw, 24px);
+    width: 20vw;
+    text-decoration: underline;
+    color: var(--text_color);
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    text-align: center;
+    inline-size: auto;
+      overflow-wrap: break-word;
+}
+
+header button:nth-of-type(1) {
+    top: 30%;
+    left: 10%
+}
+
+header button:nth-of-type(2) {
+    top: 60%;
+    left: 75%
+}
+
+header button:nth-of-type(3) {
+    top: 65%;
+    left: 15%
+}
+
+header button:nth-of-type(4) {
+    top: 85%;
+    left: 70%
+}
+
+ul {
+    color: var(--text_color);
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    z-index: 2;
+}
+
+li {
+    position: relative;
+}
+
+#topBtn {
+    display: none;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    font-size: 1em;
+    margin: 1em;
+    padding: 0.6em;
+    text-align: center;
+    border-color: var(--text_color);
+    border-radius: 0.5em;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3em;
+    inline-size: 70px;
+    overflow: hidden;
+    background-color: #cccccc2c;
+    color: var(--text_color);
+}
+
+
+#topBtn img{
+    width: 50px;
+    height: 50px;
+}
+
+.rocketFly{
+    animation: rocketFly 0.5s linear;
+}
+
+/* Star shape, from stackoverflow - source: https://stackoverflow.com/questions/45285164/4-points-rounded-star-shape */
+.four-point-star::after,
+.four-point-star::before {
+    position: absolute;
+    content: "\2726";
+}
+
+.four-point-star::after {
+    /* The foreground star */
+    position: relative;
+    background: linear-gradient(135deg, rgb(249, 255, 204) 20%, rgb(255, 255, 255) 70%);
+    background-clip: text;
+    color: transparent;
+}
+
+.four-point-star::before {
+    /* The star shadow */
+    color: transparent;
+    text-shadow: 0 0 10px rgb(255, 255, 255);
+}
+
+.four-point-star {
+    position: absolute;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    left: -0.8em;
+    top: 0.3em;
+}
+ 
+header button:nth-of-type(3) .four-point-star{
+    left: 7em;
+}
+
+.stars {
+    inset: 0;
+    overflow: hidden;
+    z-index: 0;
+}
+
+#lines-svg {
+    position: relative;
+    pointer-events: none;
+    stroke-dasharray: 5;
+    stroke-width: 2;
+}
+
+line {
+    opacity: 0.6;
+    stroke: white;
+    border-radius: 5px;
+    filter: drop-shadow(0 0 10px hsla(0, 0%, 100%, 1)) drop-shadow(0 0 10px hsla(0, 0%, 100%, 1));
+}
+
+.scroll-btn {
+    z-index: 2;
+}
+
+/* Moon/sun */
+#top {
+    width: 100vw;
+    height: auto;
+    position: absolute;
+    left: 0;
+    bottom: 28em;
+    animation: moonRotate 120s linear infinite;
+    z-index: 1;
+}
+
+/* Image animation (left to right and vise versa) */
+#flyingObject {
+    position: absolute;
+    animation: linear infinite;
+    animation-iteration-count: infinite;
+    z-index: 0;
+}
+
+#flyingObject:nth-of-type(1) {
+    animation-duration: 12s;
+    animation-name: flyClose;
+    top: 15%;
+    width: 100px;
+    height: 100px;
+}
+
+#flyingObject:nth-of-type(2) {
+    animation-duration: 17s;
+    animation-name: flyFar;
+    bottom: 30%;
+    width: 30px;
+    height: 30px;
+}
+
+#flyingObject:nth-of-type(3) {
+    animation-duration: 12s;
+    animation-name: flyClose;
+}
+
+/* Landed Space shuttle */
+#landedCapsule {
+    width: 15vw;
+    min-width: 5em;
+    height: auto;
+    position: absolute;
+    left: 0;
+    bottom: 28em;
+    animation: moonRotate 120s linear infinite;
+    z-index: 1;
+}
+
+/* Flying Space shuttle */
+
+
+/* Aurora effect source from: https://codepen.io/LauraCole1900/pen/PoLPLpq */
+#aurora {
+    height: 80vh;
+    width: 100vw;
+    position: absolute;
+    top: 2em;
+    overflow: hidden;
+    background-image: var(--aurora-gradient), var(--aurora-gradient);
+    background-size: 17% 100vh, 17% 100vh;
+    background-position: 0% 0%, 80% 0%;
+    filter: blur(35px);
+    animation: auroraPulse 12s ease infinite;
+    opacity: 0.6;
+}
+
+/* Clouds */
+.cloud {
+    width: 130px;
+    height: 50px;
+    background-color: var(--cloud-bg);
+    position: absolute;
+    transform: translate(-50%, -50%);
+    border-radius: 100px;
+    box-shadow: 0 0 10px var(--cloud-bg), inset -10px -10px 30px var(--cloud-inset-shadow);
+}
+
+.cloud::before {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: var(--cloud-bg);
+    top: -20px;
+    left: 30px;
+    box-shadow: 0 0px 10px var(--cloud-bg);
+}
+
+.cloud::after {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--cloud-bg);
+    top: -30px;
+    left: 60px;
+    box-shadow: 0 0 10px var(--cloud-bg);
+}
+
+.cloud:nth-of-type(1) {
+    left: 70%;
+    top: 45%;
+}
+
+.cloud:nth-of-type(2) {
+    left: 30%;
+    top: 25%;
+}
+
+svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Animations */
+@media (prefers-reduced-motion: no-preference) {
+    @keyframes auroraPulse {
+        0% {
+            transform: skew(2deg);
+            background-position: 0% 0%, 100% 0%;
+        }
+
+        50% {
+            transform: skew(-0deg);
+            background-position: 40% 0%, 90% 0%;
+        }
+
+        100% {
+            transform: skew(2deg);
+            background-position: 0% 0%, 100% 0%;
+        }
+    }
+
+
+    @keyframes flyClose {
+        from {
+            transform: translateX(calc(50vw)) rotate(360deg) translateY(calc(-5vh));
+        }
+
+        to {
+            transform: translateX(calc(-100vw)) rotate(0deg);
+        }
+    }
+
+    @keyframes flyFar {
+        from {
+            transform: translateX(calc(-100vw)) rotate(0deg);
+        }
+
+        to {
+            transform: translateX(calc(50vw)) rotate(360deg) translateY(calc(7vh));
+        }
+    }
+
+    @keyframes twinkle {
+
+        0%,
+        100% {
+            opacity: 0.2;
+            transform: scale(0.8);
+        }
+
+        50% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    @keyframes moonRotate {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes rocketFly {
+        from {
+            transform: translateY(calc(0vh)) rotate(0deg);
+        }
+
+        to {
+            transform: translateY(calc(-100vh)) rotate(0deg);
+        }
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --text_color: #000000;
+        --top-sky: #faf2528d;
+        --sky-color: #277dff;
+        --bottom-sky: #59e1ff;
+
+        --aurora-top: #00ffae;
+        --aurora-bottom: #e100ff;
+        --aurora-middle: #bbff00;
+    }
+}
