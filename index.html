@@ -13,10 +13,10 @@
     <button id="topBtn" class="scroll-btn" data-target="Top"><img src="img/Rocketship.png">Back to top</button>
     <!-- Korte intro -->
     <header id="Top" class="stars">
-        <h1>Ik ben Diego</h1>
+        <h1>Ontdek meer over mij!</h1>
         <button class="scroll-btn" data-target="Exosphere"><span class="four-point-star"></span>Exosphere</button>
-        <button class="scroll-btn" data-target="Thermosphere"><span class="four-point-star"></span>Thermosphere</button>
-        <button class="scroll-btn" data-target="Stratosphere">Stratosphere<span class="four-point-star"></span></button>
+        <button class="scroll-btn" data-target="Stratosphere"><span class="four-point-star"></span>Stratosphere</button>
+        <button class="scroll-btn" data-target="Thermosphere">Thermosphere<span class="four-point-star"></span></button>
         <button class="scroll-btn" data-target="Surface"><span class="four-point-star"></span>Surface</button>
         <svg id="lines-svg"></svg>
         <picture>
@@ -25,31 +25,39 @@
         </picture>
     </header>
     <section id="Exosphere" class="stars">
-
+            <h2>Exposhere - Introduction Info</h2>
+        <ul id="ExosphereList">
+            <li>${data.name}</li>
+            <li>Verjaardag: ${data.birthdate}</li>
+            <li>Woonplaats: Heemskerk</li>
+            <li>Hobbies: ${data.bio}</li>
+        </ul>
+        <!-- Oppervlakkige info -->
+        <img id="flyingObject" src="img/Sattelite_Image.png">
+        <img id="flyingObject" src="img/Sattelite_Image.png">
     </section>
     <section id="Thermosphere">
         <!-- Iets diepere info -->
-        <h2>Deeper Info</h2>
+        <h2>Thermosphere - Deeper Info</h2>
         <div id="aurora"></div>
     </section>
     <section id="Stratosphere">
         <!-- Persoonlijke info -->
-        <h2>Goals</h2>
+        <h2>Stratosphere - Leerdoelen</h2>
         <ul>
-            <h2>Leerdoelen</h2>
             <li>Leren animeren met Javascript met CSS</li>
             <li>CSS leren tot het punt dat ik vormen kan maken</li>
             <li>Beter leren API verwerken in een website</li>
             <li>Teamwerk binnen code verbeteren</li>
         </ul>
         <img id="flyingObject" src="img/Alien_Shuttle.png">
+        <img id="landingCapsule" src="img/Landing_Capsule.png">
     </section>
     <section id="Surface">
         <!-- Persoonlijke info -->
         <div class="cloud"></div>
         <div class="cloud"></div>
-        <h2>Personal Info</h2>
-        <img id="landedCapsule" src="img/Landed_Capsule.png">
+        <h2>Surface - Personal Info</h2>
     </section>
 </body>
 

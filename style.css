@@ -29,13 +29,11 @@
     position: absolute;
     box-sizing: border-box;
     content: '';
-    z-index: 1;
 }
 
 header {
     background: linear-gradient(var(--top-sky) 0%, var(--sky-color) 100%);
     position: relative;
-    overflow: hidden;
 }
 
 section {
@@ -46,10 +44,8 @@ header,
 section {
     background-size: cover;
     height: 100vh;
-    width: 100vw;
-    overflow-x: hidden;
-    overflow-y: auto;
-    gap: 1em;
+    width: 100%;
+        overflow-x: hidden;
 }
 
 section:nth-of-type(1) {
@@ -73,8 +69,13 @@ body {
     text-align: center;
 }
 
-h1 {
+h1, h2, ul {
+    position: relative;
+    z-index: 3;
     color: var(--text_color);
+}
+
+h1 {
     position: absolute;
     text-align: center;
     top: 50%;
@@ -83,22 +84,30 @@ h1 {
 
 h2 {
     position: relative;
-    color: var(--text_color);
-    z-index: 2;
     font-size: min(6vw, 48px);
+    padding: 1em;
 }
 
 header button {
     font-size: min(3vw, 24px);
+    color: var(--text_color);
     width: 20vw;
     text-decoration: underline;
-    color: var(--text_color);
     background-color: transparent;
     border: none;
     position: absolute;
     text-align: center;
     inline-size: auto;
-      overflow-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+header button:hover {
+    font-size: min(3.01vw, 26px);
+    text-shadow:1px 1px 10px #fff, 1px 1px 10px #ccc;
+}
+
+header span {
+    font-size: min(4vw, 24px);
 }
 
 header button:nth-of-type(1) {
@@ -122,11 +131,9 @@ header button:nth-of-type(4) {
 }
 
 ul {
-    color: var(--text_color);
     list-style-type: none;
     padding: 0;
     margin: 0;
-    z-index: 2;
 }
 
 li {
@@ -139,7 +146,7 @@ li {
     right: 0;
     bottom: 0;
     font-size: 1em;
-    margin: 1em;
+    margin: 1.5em;
     padding: 0.6em;
     text-align: center;
     border-color: var(--text_color);
@@ -160,13 +167,14 @@ li {
 }
 
 .rocketFly{
-    animation: rocketFly 0.5s linear;
+    animation: rocketFly 1s ease-in;
 }
 
 /* Star shape, from stackoverflow - source: https://stackoverflow.com/questions/45285164/4-points-rounded-star-shape */
 .four-point-star::after,
 .four-point-star::before {
     position: absolute;
+    top: -0.5em;
     content: "\2726";
 }
 
@@ -192,10 +200,7 @@ li {
     left: -0.8em;
     top: 0.3em;
 }
- 
-header button:nth-of-type(3) .four-point-star{
-    left: 7em;
-}
+
 
 .stars {
     inset: 0;
@@ -237,7 +242,6 @@ line {
     position: absolute;
     animation: linear infinite;
     animation-iteration-count: infinite;
-    z-index: 0;
 }
 
 #flyingObject:nth-of-type(1) {
@@ -264,16 +268,29 @@ line {
 /* Landed Space shuttle */
 #landedCapsule {
     width: 15vw;
-    min-width: 5em;
+    max-width: 15vw;
+    min-width: 10em;
     height: auto;
-    position: absolute;
-    left: 0;
-    bottom: 28em;
-    animation: moonRotate 120s linear infinite;
+    position: relative;
+    bottom: -24em;
+    animation: capsuleLanded 10s linear infinite;
     z-index: 1;
+    rotate: 25deg;
 }
 
 /* Flying Space shuttle */
+#landingCapsule{
+    width: 15vw;
+    max-width: 15vw;
+    min-width: 10em;
+    height: auto;
+    bottom: 4em;
+    left: 2em;
+    position: absolute;
+    animation: capsuleLanding 10s ease-in-out infinite;
+    z-index: 1;
+    rotate: 25deg;
+}
 
 
 /* Aurora effect source from: https://codepen.io/LauraCole1900/pen/PoLPLpq */
@@ -332,6 +349,7 @@ line {
     top: 25%;
 }
 
+/* Constellation */
 svg {
     position: absolute;
     top: 0;
@@ -411,6 +429,36 @@ svg {
 
         to {
             transform: translateY(calc(-100vh)) rotate(0deg);
+            opacity: 0.1;
+        }
+    }
+
+    @keyframes capsuleLanded {
+        0% {
+            transform: translateY(0px);
+        }
+
+        50% {
+            transform: translateY(10px);
+        }
+        100%{
+            transform: translateY(0px)
+        }
+    }
+
+    @keyframes capsuleLanding {
+        0% {
+            transform: translateY(0px);
+            rotate: 15deg;
+        }
+
+        50% {
+            transform: translateY(5px);
+            rotate: -25deg;
+        }
+        100%{
+            transform: translateY(0px);
+            rotate: 15deg;
         }
     }
 }

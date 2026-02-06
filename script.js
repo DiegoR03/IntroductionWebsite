@@ -1,17 +1,7 @@
-const apiURL = 'https://fdnd.directus.app/items/person/288';
-const parentElement = document.getElementById('Exosphere');
+const apiURL = './API/personInfo_API.json';
 
-let mybutton = document.getElementById("topBtn");
 
-parentElement.classList.add('loading')
-
-mybutton.addEventListener('click', () => {
-    mybutton.classList.add('rocketFly');
-    setTimeout(() => {
-        mybutton.classList.remove('rocketFly');
-    }, duration * 500);
-
-});
+let topBtn = document.getElementById("topBtn");
 
 // Function used from own older project: https://github.com/DiegoR03/Portfolio-Website/blob/main/js/backgroundIcon.js
 function createStar() {
@@ -48,8 +38,6 @@ document.querySelectorAll('.scroll-btn').forEach(btn => {
         }
     });
 });
-
-
 
 function drawLines() {
     const svg = document.getElementById("lines-svg");
@@ -101,32 +89,56 @@ window.onscroll = function () { scrollFunction() };
 
 function scrollFunction() {
     if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-        mybutton.style.display = "flex";
+        topBtn.style.display = "flex";
     } else {
-        mybutton.style.display = "none";
+        topBtn.classList.remove('rocketFly');
+        topBtn.style.display = "none";
     }
 }
+
+topBtn.addEventListener('click', () => {
+    topBtn.classList.add('rocketFly');
+});
 
 function topFunction() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 }
 
-fetchJson(apiURL).then(function (response) {
-    console.log(response.data)
-    parentElement.innerHTML = `
-    <h2>Exposhere - Introduction Info</h2>
-        <ul>
-            <li>Verjaardag: ${response.data.birthdate}</li>
-            <li>Woonplaats: Heemskerk</li>
-            <li>Hobbies: ${response.data.bio}</li>
-        </ul>
-        <!-- Oppervlakkige info -->
-        <img id="flyingObject" src="img/Sattelite_Image.png">
-        <img id="flyingObject" src="img/Sattelite_Image.png">
-    `
-    parentElement.classList.remove('loading')
-})
+fetchJson(apiURL)
+    .then(({ data }) => {
+        writeHTML("ExosphereList", apiInfo(data, 'Exosphere'))
+    })
+
+function writeHTML(target, html) {
+    target = document.getElementById(target)
+    target.innerHTML = html
+}
+
+function apiInfo(data, view) {
+    switch (view) {
+        case 'Exosphere':
+            return `
+                <li>${data.name}</li>
+                <li>Verjaardag: ${data.birthdate}</li>
+                <li>Hobbies: ${data.bio}</li>
+            `
+
+        case 'Thermosphere':
+            return `
+                <li>Naam: ${data.nickname}</li>
+                <li>Geboortedatum: ${data.birthdate}</li>
+            `
+
+        case 'Surface':
+            return `
+                <li>Hobbies: ${data.bio}</li>
+            `
+
+        default:
+            return `<li>Geen informatie beschikbaar</li>`
+    }
+}
 
 async function fetchJson(url, payload = {}) {
     return await fetch(url, payload)
