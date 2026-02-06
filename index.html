@@ -10,7 +10,8 @@
 </head>
 
 <body>
-    <button id="topBtn" class="scroll-btn" data-target="Top"><img src="img/Rocketship.png">Back to top</button>
+    <button id="topBtn" class="scroll-btn" data-target="Top"><img src="img/Rocketship.png"
+            alt="A rocketship button which symbolizes flying back up to the top of the page">Back to top</button>
     <!-- Korte intro -->
     <header id="Top" class="stars">
         <h1>Ontdek meer over mij!</h1>
@@ -21,43 +22,42 @@
         <svg id="lines-svg"></svg>
         <picture>
             <source srcset="img/Sun.png" media="(prefers-color-scheme: light)">
-            <img id="top" src="img/Moon.png">
+            <img id="top" src="img/Moon.png"
+                alt="The top image of the page, in light mode this is de sun and in dark mode the moon.">
         </picture>
     </header>
     <section id="Exosphere" class="stars">
-            <h2>Exposhere - Introduction Info</h2>
+        <h2>Exposhere - Introduction Info</h2>
         <ul id="ExosphereList">
-            <li>${data.name}</li>
-            <li>Verjaardag: ${data.birthdate}</li>
-            <li>Woonplaats: Heemskerk</li>
-            <li>Hobbies: ${data.bio}</li>
         </ul>
         <!-- Oppervlakkige info -->
-        <img id="flyingObject" src="img/Sattelite_Image.png">
-        <img id="flyingObject" src="img/Sattelite_Image.png">
+        <img id="flyingObject" src="img/Sattelite_Image.png" alt="A sattelite image that flies by with an animation">
+        <img id="flyingObject" src="img/Sattelite_Image.png" alt="A sattelite image that flies by with an animation">
     </section>
     <section id="Thermosphere">
         <!-- Iets diepere info -->
         <h2>Thermosphere - Deeper Info</h2>
+        <ul id="ThermosphereList">
+        </ul>
         <div id="aurora"></div>
     </section>
     <section id="Stratosphere">
         <!-- Persoonlijke info -->
         <h2>Stratosphere - Leerdoelen</h2>
-        <ul>
-            <li>Leren animeren met Javascript met CSS</li>
-            <li>CSS leren tot het punt dat ik vormen kan maken</li>
-            <li>Beter leren API verwerken in een website</li>
-            <li>Teamwerk binnen code verbeteren</li>
+                <img class="parachute" src="img/Parachute.png" alt="A parachute image that moves slightly with an animation">
+        <ul id="StratosphereList">
         </ul>
-        <img id="flyingObject" src="img/Alien_Shuttle.png">
-        <img id="landingCapsule" src="img/Landing_Capsule.png">
+        <img id="flyingObject" src="img/Alien_Shuttle.png" alt="An alien shuttle image that flies by with an animation">
+        <img id="landingCapsule" src="img/Landing_Capsule.png"
+            alt="A space shuttle that is swinging left and right mimicking a landing movement">
     </section>
     <section id="Surface">
         <!-- Persoonlijke info -->
         <div class="cloud"></div>
         <div class="cloud"></div>
         <h2>Surface - Personal Info</h2>
+        <ul id="SurfaceList">
+        </ul>
     </section>
 </body>
 

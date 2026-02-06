@@ -4,18 +4,24 @@
     --aurora-middle: #e100ff;
     --aurora-gradient: linear-gradient(var(--sky-color), 30%, var(--aurora-top), var(--aurora-bottom), var(--aurora-middle));
     --bg-doc: #6f8db8;
-    --cloud-bg: #ffffff;
-    --cloud-inset-shadow: #ccc;
+    --cloud-bg: #423a7b;
+    --cloud-inset-shadow: #252236;
     --text_color: #ffffff;
     --top-sky: #000000;
     --sky-color: #000122;
     --bottom-sky: #0025c9a6;
     --sea-color: #00115a;
+
+    --capsule-gray:#8e8e8e;
+    --capsule-red:#F94868;
+    --capsule-brown: #663128;
 }
 
 @font-face {
-  font-family: Oxanium; /* set name */
-  src: url(fonts/Oxanium.ttf); /* url of the font */
+    font-family: Oxanium;
+    /* set name */
+    src: url(fonts/Oxanium.ttf);
+    /* url of the font */
 }
 
 * {
@@ -45,7 +51,7 @@ section {
     background-size: cover;
     height: 100vh;
     width: 100%;
-        overflow-x: hidden;
+    overflow-x: hidden;
 }
 
 section:nth-of-type(1) {
@@ -61,7 +67,7 @@ section:nth-of-type(3) {
 }
 
 section:nth-of-type(4) {
-    background: linear-gradient(var(--sky-color) 20%, var(--bottom-sky) 80%, transparent 0%);
+    background: linear-gradient(var(--sky-color) 20%, var(--bottom-sky) 80%, transparent 80.5%, transparent 99.9%);
     background-color: var(--sea-color);
 }
 
@@ -69,7 +75,10 @@ body {
     text-align: center;
 }
 
-h1, h2, ul {
+h1,
+h2,
+ul {
+    font-size: min(10vw, 48px);
     position: relative;
     z-index: 3;
     color: var(--text_color);
@@ -89,9 +98,8 @@ h2 {
 }
 
 header button {
-    font-size: min(3vw, 24px);
+    font-size: min(4vw, 22px);
     color: var(--text_color);
-    width: 20vw;
     text-decoration: underline;
     background-color: transparent;
     border: none;
@@ -103,7 +111,7 @@ header button {
 
 header button:hover {
     font-size: min(3.01vw, 26px);
-    text-shadow:1px 1px 10px #fff, 1px 1px 10px #ccc;
+    text-shadow: 1px 1px 10px #fff, 1px 1px 10px #ccc;
 }
 
 header span {
@@ -134,9 +142,39 @@ ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
+    display: inline-block;
+    position: relative;
+}
+
+section:nth-of-type(1) ul {
+    background-color: #00ffae;
+}
+
+section:nth-of-type(2) ul {
+    background-color: #00ffae;
+}
+
+section:nth-of-type(3) ul {
+    padding: 2.5em;
+    height: auto;
+    border-radius: 4em 4em 1em 1em;
+    background: linear-gradient(var(--capsule-gray) 80%, transparent 80.1%);
+    background-color: var(--capsule-red);
+    border-color: var(--capsule-brown);
+    border-style: solid;
+    border-width: 3px;
+    font-size: min(4vw, 24px);
+    width: min(40vw, 20em);
+    text-align: left;
+    animation: StratosphereText 25s ease infinite;
+}
+
+section:nth-of-type(4) ul {
+    background-color: #00ffae;
 }
 
 li {
+    font-size: min(4vw, 22px);
     position: relative;
 }
 
@@ -160,13 +198,13 @@ li {
     color: var(--text_color);
 }
 
-
-#topBtn img{
+/* Button which brings you back to the top of the page */
+#topBtn img {
     width: 50px;
     height: 50px;
 }
 
-.rocketFly{
+.rocketFly {
     animation: rocketFly 1s ease-in;
 }
 
@@ -200,7 +238,6 @@ li {
     left: -0.8em;
     top: 0.3em;
 }
-
 
 .stars {
     inset: 0;
@@ -279,7 +316,7 @@ line {
 }
 
 /* Flying Space shuttle */
-#landingCapsule{
+#landingCapsule {
     width: 15vw;
     max-width: 15vw;
     min-width: 10em;
@@ -317,6 +354,7 @@ line {
     transform: translate(-50%, -50%);
     border-radius: 100px;
     box-shadow: 0 0 10px var(--cloud-bg), inset -10px -10px 30px var(--cloud-inset-shadow);
+    animation: cloudFloat 12s ease infinite;
 }
 
 .cloud::before {
@@ -342,6 +380,7 @@ line {
 .cloud:nth-of-type(1) {
     left: 70%;
     top: 45%;
+    animation-delay: 2s;
 }
 
 .cloud:nth-of-type(2) {
@@ -349,6 +388,17 @@ line {
     top: 25%;
 }
 
+/* Parachute image styling */
+.parachute {
+    position: relative;
+    display: block;
+    width: 18vw;
+    min-width: 2em;
+    justify-self: center;
+    animation: StratosphereText 25s ease infinite;
+    left: auto;
+    right: auto;
+}
 /* Constellation */
 svg {
     position: absolute;
@@ -360,6 +410,7 @@ svg {
 
 /* Animations */
 @media (prefers-reduced-motion: no-preference) {
+    /* Background Elements */
     @keyframes auroraPulse {
         0% {
             transform: skew(2deg);
@@ -377,7 +428,35 @@ svg {
         }
     }
 
+    @keyframes twinkle {
 
+        0%,
+        100% {
+            opacity: 0.2;
+            transform: scale(0.8);
+        }
+
+        50% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    @keyframes cloudFloat {
+        0% {
+            transform: translateX(0px);
+        }
+
+        50% {
+            transform: translateX(15px);
+        }
+
+        100% {
+            transform: translateX(0px);
+        }
+    }
+
+    /* Images */
     @keyframes flyClose {
         from {
             transform: translateX(calc(50vw)) rotate(360deg) translateY(calc(-5vh));
@@ -395,20 +474,6 @@ svg {
 
         to {
             transform: translateX(calc(50vw)) rotate(360deg) translateY(calc(7vh));
-        }
-    }
-
-    @keyframes twinkle {
-
-        0%,
-        100% {
-            opacity: 0.2;
-            transform: scale(0.8);
-        }
-
-        50% {
-            opacity: 1;
-            transform: scale(1);
         }
     }
 
@@ -441,7 +506,8 @@ svg {
         50% {
             transform: translateY(10px);
         }
-        100%{
+
+        100% {
             transform: translateY(0px)
         }
     }
@@ -456,9 +522,25 @@ svg {
             transform: translateY(5px);
             rotate: -25deg;
         }
-        100%{
+
+        100% {
             transform: translateY(0px);
             rotate: 15deg;
+        }
+    }
+
+    /* Text boxes */
+    @keyframes StratosphereText {
+        0% {
+            transform: translateY(0px);
+        }
+
+        50% {
+            transform: translateY(25px);
+        }
+
+        100% {
+            transform: translateY(0px);
         }
     }
 }
@@ -469,9 +551,15 @@ svg {
         --top-sky: #faf2528d;
         --sky-color: #277dff;
         --bottom-sky: #59e1ff;
+        --sea-color: #0065e1;
 
         --aurora-top: #00ffae;
         --aurora-bottom: #e100ff;
         --aurora-middle: #bbff00;
+
+        --cloud-bg: #ffffff;
+        --cloud-inset-shadow: #ccc;
+
+        --capsule-gray:#E5E5E5;
     }
 }

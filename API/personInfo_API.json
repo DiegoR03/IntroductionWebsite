@@ -1,16 +1,22 @@
 {
-"data": {
-"id": 288,
-"name": "Diego Ramón Schluter",
-"role": "Student",
-"nickname": "Noodle",
-"github_handle": "DiegoR03",
-"bio": "I am usually quiet and not very active, I don't have alot of free time. Usually I spend my free time with my girlfriend.",
-"avatar": "https://avatars.githubusercontent.com/u/54799111?v=4",
-"birthdate": "2003-11-20",
-"fav_food": "Rice and chicken",
-"relationship_status": "Taken",
-"hobbies": "Sport, cooking, cleaning, gaming",
-"nationality": "Half indonesian, a quarter dutch and A quarter spanish"
-}
+    "data": {
+        "id": 288,
+        "name": "Diego Ramón Schluter",
+        "role": "Student",
+        "nickname": "Noodle",
+        "github_handle": "DiegoR03",
+        "bio": "I am usually quiet and not very active, I don't have alot of free time. Usually I spend my free time with my girlfriend.",
+        "avatar": "https://avatars.githubusercontent.com/u/54799111?v=4",
+        "birthdate": "2003-11-20",
+        "fav_food": "Rice and chicken",
+        "relationship_status": "Taken",
+        "hobbies": "Sport, cooking, cleaning, gaming",
+        "nationality": "Half indonesian, a quarter dutch and A quarter spanish",
+        "goals": [
+            "1 - Leren animeren met Javascript met CSS", 
+            "2 - Vormen maken met CSS", 
+            "3 - Beter leren API verwerken in een website en eventueel zelf een API maken", 
+            "4 - Teamwerk binnen code verbeteren"
+        ]
+    }
 }

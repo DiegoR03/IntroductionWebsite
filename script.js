@@ -108,6 +108,9 @@ function topFunction() {
 fetchJson(apiURL)
     .then(({ data }) => {
         writeHTML("ExosphereList", apiInfo(data, 'Exosphere'))
+        writeHTML("ThermosphereList", apiInfo(data, 'Thermosphere'))
+        writeHTML("StratosphereList", apiInfo(data, 'Stratosphere'))
+        writeHTML("SurfaceList", apiInfo(data, 'Surface'))
     })
 
 function writeHTML(target, html) {
@@ -119,20 +122,33 @@ function apiInfo(data, view) {
     switch (view) {
         case 'Exosphere':
             return `
-                <li>${data.name}</li>
-                <li>Verjaardag: ${data.birthdate}</li>
-                <li>Hobbies: ${data.bio}</li>
+                <li>Name: ${data.name}</li>
+                <li>Role: ${data.role}</li>
+                <li>Github name: ${data.github_handle}</li>
+                <li>Bio: ${data.bio}</li>
             `
 
         case 'Thermosphere':
             return `
-                <li>Naam: ${data.nickname}</li>
-                <li>Geboortedatum: ${data.birthdate}</li>
+                <li>Birthday: ${data.birthdate}</li>
+                <li>Hobbies: ${data.hobbies}</li>
+                <li>Favourite food: ${data.fav_food}</li>
             `
+
+        case 'Stratosphere':
+            return `
+                <li>${data.goals[0]}</li>
+                <li>${data.goals[1]}</li>
+                <li>${data.goals[2]}</li>
+                <li>${data.goals[3]}</li>
+            `
+            
 
         case 'Surface':
             return `
-                <li>Hobbies: ${data.bio}</li>
+                <li>Nationality: ${data.nationality}</li>
+                <li>Nickname: ${data.nickname}</li>
+                <li>Relationship: ${data.relationship_status}</li>
             `
 
         default:
