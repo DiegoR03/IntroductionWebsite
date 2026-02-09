@@ -118,6 +118,10 @@ function writeHTML(target, html) {
     target.innerHTML = html
 }
 
+function parseCustomString(string){
+    return JSON.parse(string)
+}
+
 function apiInfo(data, view) {
     switch (view) {
         case 'Exosphere':
