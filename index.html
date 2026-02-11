@@ -5,58 +5,134 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Introductie Website</title>
+    <link rel="icon" href="img/Rocketship.png">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
+    <script src="server.js" defer></script>
 </head>
 
 <body>
-    <button id="topBtn" class="scroll-btn" data-target="Top"><img src="img/Rocketship.png"
+    <button id="backToTop_Button" class="tableOfContent-Button" data-target="Top"><img src="img/Rocketship.png"
             alt="A rocketship button which symbolizes flying back up to the top of the page">Back to top</button>
     <!-- Korte intro -->
     <header id="Top" class="stars">
         <h1>Ontdek meer over mij!</h1>
-        <button class="scroll-btn" data-target="Exosphere"><span class="four-point-star"></span>Exosphere</button>
-        <button class="scroll-btn" data-target="Stratosphere"><span class="four-point-star"></span>Stratosphere</button>
-        <button class="scroll-btn" data-target="Thermosphere">Thermosphere<span class="four-point-star"></span></button>
-        <button class="scroll-btn" data-target="Surface"><span class="four-point-star"></span>Surface</button>
-        <svg id="lines-svg"></svg>
+        <button class="tableOfContent-Button" data-target="Exosphere"><span
+                class="four-point-star"></span>Exosphere</button>
+        <button class="tableOfContent-Button" data-target="Stratosphere"><span
+                class="four-point-star"></span>Stratosphere</button>
+        <button class="tableOfContent-Button" data-target="Thermosphere">Thermosphere<span
+                class="four-point-star"></span></button>
+        <button class="tableOfContent-Button" data-target="Surface"><span
+                class="four-point-star"></span>Surface</button>
+        <button class="tableOfContent-Button" data-target="SolarSystem"><span
+                class="four-point-star"></span>SolarSystem</button>
+        <svg id="constellation-lines"></svg>
         <picture>
             <source srcset="img/Sun.png" media="(prefers-color-scheme: light)">
-            <img id="top" src="img/Moon.png"
-                alt="The top image of the page, in light mode this is de sun and in dark mode the moon.">
+            <img id="topImage" src="img/Moon.png" alt="The top image of the page, in light mode this is de sun and in dark mode the moon.">
         </picture>
     </header>
+
+    <dialog id="solarOverlay" class="stars">
+        <section id="SolarSystem">
+            <button id="closeSolar">✕</button>
+
+            <h3>Solar System</h3>
+            <span>Andere Studenten</span>
+
+            <div id="planet-scroll">
+                <div id="planet-container"></div>
+            </div>
+        </section>
+    </dialog>
+
+
     <section id="Exosphere" class="stars">
         <h2>Exposhere - Introduction Info</h2>
+        <p>Press one of the sattelites</p>
         <ul id="ExosphereList">
         </ul>
         <!-- Oppervlakkige info -->
-        <img id="flyingObject" src="img/Sattelite_Image.png" alt="A sattelite image that flies by with an animation">
-        <img id="flyingObject" src="img/Sattelite_Image.png" alt="A sattelite image that flies by with an animation">
+        <input type="image" class="flyingObject" data-target="info-name" src="img/Sattelite_Image.png"
+            alt="Satellite showing name" />
+        <input type="image" class="flyingObject" data-target="info-birthday" src="img/Sattelite_Image.png"
+            alt="Satellite showing role" />
+        <input type="image" class="flyingObject" data-target="info-github" src="img/Sattelite_Image.png"
+            alt="Satellite showing github" />
+        <input type="image" class="flyingObject" data-target="info-bio" src="img/Sattelite_Image.png"
+            alt="Satellite showing bio" />
+
+        <dialog id="infoScreen">
+            <button id="closeScreen">✕</button>
+            <div class="dialog-content">
+                <img id="dialogSatellite" src="img/Sattelite_Image.png" alt="">
+                <p id="screenText"></p>
+            </div>
+        </dialog>
     </section>
+
     <section id="Thermosphere">
         <!-- Iets diepere info -->
-        <h2>Thermosphere - Deeper Info</h2>
+        <h2>Thermosphere - Leerdoelen</h2>
         <ul id="ThermosphereList">
         </ul>
         <div id="aurora"></div>
     </section>
+
     <section id="Stratosphere">
         <!-- Persoonlijke info -->
-        <h2>Stratosphere - Leerdoelen</h2>
-                <img class="parachute" src="img/Parachute.png" alt="A parachute image that moves slightly with an animation">
+        <h2>Stratosphere - Deeper Info</h2>
+        <img class="parachute" src="img/Parachute.png" alt="A parachute image that moves slightly with an animation">
         <ul id="StratosphereList">
         </ul>
-        <img id="flyingObject" src="img/Alien_Shuttle.png" alt="An alien shuttle image that flies by with an animation">
+        <img class="flyingObject" src="img/Alien_Shuttle.png"
+            alt="An alien shuttle image that flies by with an animation">
         <img id="landingCapsule" src="img/Landing_Capsule.png"
             alt="A space shuttle that is swinging left and right mimicking a landing movement">
     </section>
+
     <section id="Surface">
         <!-- Persoonlijke info -->
         <div class="cloud"></div>
         <div class="cloud"></div>
         <h2>Surface - Personal Info</h2>
-        <ul id="SurfaceList">
+
+        <div id="SurfaceList">
+            <div class="button-wrapper">
+                <input type="image" id="buoy1Btn" class="surface-button buoy" src="img/Buoy.png" alt="Buoy showing GitHub" />
+                <dialog class="surface-popup" id="buoy1Popup">
+                    <div class="popup-content">
+                        <button class="popup-close">&times;</button>
+                        <h3>Buoy 1</h3>
+                        <p id="buoy1Info"></p>
+                    </div>
+                </dialog>
+            </div>
+
+            <div class="button-wrapper">
+                <input type="image" id="capsuleBtn" class="surface-button landed-capsule" src="img/Landed_Capsule.png"
+                    alt="Landed Capsule" />
+                <dialog class="surface-popup" id="capsulePopup">
+                    <div class="popup-content">
+                        <button class="popup-close">&times;</button>
+                        <h3>Landed Capsule</h3>
+                        <p id="capsuleInfo"></p>
+                    </div>
+                </dialog>
+            </div>
+
+            <div class="button-wrapper">
+                <input type="image" id="buoy2Btn" class="surface-button buoy" src="img/Buoy.png" alt="Buoy showing Bio" />
+                <dialog class="surface-popup" id="buoy2Popup">
+                    <div class="popup-content">
+                        <button class="popup-close">&times;</button>
+                        <h3>Buoy 2</h3>
+                        <p id="buoy2Info"></p>
+                    </div>
+                </dialog>
+            </div>
+        </div>
         </ul>
     </section>
 </body>

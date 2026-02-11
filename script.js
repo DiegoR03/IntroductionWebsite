@@ -1,7 +1,26 @@
-const apiURL = './API/personInfo_API.json';
+let backToTop_Button = document.getElementById("backToTop_Button");
 
+const satellites = document.querySelectorAll(".flyingObject");
+const dialog = document.getElementById("infoScreen");
+const screenText = document.getElementById("screenText");
+const closeBtn = document.getElementById("closeScreen");
+const topPicture = document.getElementById('topImage');
 
-let topBtn = document.getElementById("topBtn");
+satellites.forEach(satellite => {
+  satellite.addEventListener("click", () => {
+    const targetId = satellite.dataset.target;
+    const li = document.getElementById(targetId);
+    if (!li) return;
+
+    screenText.textContent = li.textContent;
+    dialog.showModal();
+  });
+});
+
+closeBtn.addEventListener("click", () => {
+  dialog.close();
+});
+
 
 // Function used from own older project: https://github.com/DiegoR03/Portfolio-Website/blob/main/js/backgroundIcon.js
 function createStar() {
@@ -29,7 +48,7 @@ function createStar() {
 
 setInterval(createStar, 1000);
 
-document.querySelectorAll('.scroll-btn').forEach(btn => {
+document.querySelectorAll('.tableOfContent-Button').forEach(btn => {
     btn.addEventListener('click', () => {
         const targetId = btn.dataset.target;
         const target = document.getElementById(targetId);
@@ -40,7 +59,7 @@ document.querySelectorAll('.scroll-btn').forEach(btn => {
 });
 
 function drawLines() {
-    const svg = document.getElementById("lines-svg");
+    const svg = document.getElementById("constellation-lines");
     const container = svg.parentElement;
     const stars = document.querySelectorAll("header > button > span");
 
@@ -89,15 +108,15 @@ window.onscroll = function () { scrollFunction() };
 
 function scrollFunction() {
     if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-        topBtn.style.display = "flex";
+        backToTop_Button.style.display = "flex";
     } else {
-        topBtn.classList.remove('rocketFly');
-        topBtn.style.display = "none";
+        backToTop_Button.classList.remove('rocketFly');
+        backToTop_Button.style.display = "none";
     }
 }
 
-topBtn.addEventListener('click', () => {
-    topBtn.classList.add('rocketFly');
+backToTop_Button.addEventListener('click', () => {
+    backToTop_Button.classList.add('rocketFly');
 });
 
 function topFunction() {
@@ -105,68 +124,41 @@ function topFunction() {
     document.documentElement.scrollTop = 0;
 }
 
-fetchJson(apiURL)
-    .then(({ data }) => {
-        writeHTML("ExosphereList", apiInfo(data, 'Exosphere'))
-        writeHTML("ThermosphereList", apiInfo(data, 'Thermosphere'))
-        writeHTML("StratosphereList", apiInfo(data, 'Stratosphere'))
-        writeHTML("SurfaceList", apiInfo(data, 'Surface'))
-    })
 
-function writeHTML(target, html) {
-    target = document.getElementById(target)
-    target.innerHTML = html
+document.querySelectorAll('.leerdoel-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+
+    card.style.transform = `
+      translateY(-10px)
+      rotateX(${(-y / 40)}deg)
+      rotateY(${(x / 40)}deg)
+    `;
+  });
+
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
+});
+
+topPicture.style.cursor = 'pointer'; 
+topPicture.addEventListener('click', () => {
+    document.body.classList.toggle("light-mode");
+    toggleLightMode();
+});
+
+function toggleLightMode() {
+   let element = document.body;
+   let topBody = document.getElementById("topImage");
+
+   if (element.classList.contains("light-mode")) {    
+    topBody.src = "img/Sun.png";
+   } else {
+    topBody.src = "img/Moon.png";
+   }
 }
-
-function parseCustomString(string){
-    return JSON.parse(string)
-}
-
-function apiInfo(data, view) {
-    switch (view) {
-        case 'Exosphere':
-            return `
-                <li>Name: ${data.name}</li>
-                <li>Role: ${data.role}</li>
-                <li>Github name: ${data.github_handle}</li>
-                <li>Bio: ${data.bio}</li>
-            `
-
-        case 'Thermosphere':
-            return `
-                <li>Birthday: ${data.birthdate}</li>
-                <li>Hobbies: ${data.hobbies}</li>
-                <li>Favourite food: ${data.fav_food}</li>
-            `
-
-        case 'Stratosphere':
-            return `
-                <li>${data.goals[0]}</li>
-                <li>${data.goals[1]}</li>
-                <li>${data.goals[2]}</li>
-                <li>${data.goals[3]}</li>
-            `
-            
-
-        case 'Surface':
-            return `
-                <li>Nationality: ${data.nationality}</li>
-                <li>Nickname: ${data.nickname}</li>
-                <li>Relationship: ${data.relationship_status}</li>
-            `
-
-        default:
-            return `<li>Geen informatie beschikbaar</li>`
-    }
-}
-
-async function fetchJson(url, payload = {}) {
-    return await fetch(url, payload)
-        .then((response) => response.json())
-        .catch((error) => error)
-}
-
-
 
 window.addEventListener("load", drawLines);
 window.addEventListener("resize", drawLines);
