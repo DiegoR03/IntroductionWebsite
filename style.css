@@ -24,8 +24,7 @@
     src: url(fonts/Oxanium.ttf);
 }
 
-/* Globaal= */
-
+/* Globaal */
 * {
     margin: 0;
     scroll-behavior: smooth;
@@ -64,7 +63,6 @@ body.no-scroll {
 }
 
 /* Basis layout */
-
 header {
     background: linear-gradient(var(--top-sky) 0%, var(--sky-color) 100%);
     position: relative;
@@ -83,7 +81,6 @@ section {
 }
 
 /* ID Sections */
-
 #Exosphere {
     background: linear-gradient(var(--sky-color) 0%, var(--sky-color) 100%);
 }
@@ -113,7 +110,6 @@ section {
 }
 
 /*  Typografie  */
-
 h1,
 h2,
 ul,
@@ -158,7 +154,6 @@ p {
 }
 
 /* Header buttons */
-
 header button {
     font-size: min(4vw, 22px);
     color: var(--text_color);
@@ -206,7 +201,6 @@ header button:nth-of-type(5) {
 }
 
 /* Unordered lists */
-
 ul {
     list-style-type: none;
     padding: 0;
@@ -220,7 +214,6 @@ ul {
 }
 
 /* Back to top button */
-
 #backToTop_Button {
     display: none;
     position: fixed;
@@ -252,7 +245,6 @@ ul {
 }
 
 /* Stars and svg */
-
 .four-point-star::after,
 .four-point-star::before {
     position: absolute;
@@ -539,8 +531,7 @@ svg {
     max-width: 400px;
 }
 
-/* Solar system */
-
+/* Solar system (andere studenten) */
 #solarOverlay {
     position: fixed;
     inset: 0;
@@ -610,7 +601,7 @@ svg {
     width: max-content;
 }
 
-/* Individual Planet Styles */
+/* Individuele Planet Styles */
 .planet {
     scroll-snap-align: center;
     background: none;
@@ -677,9 +668,7 @@ svg {
     content: '';
 }
 
-/* ================================
-   STRATOSPHERE CAPSULE CONTAINER
-================================ */
+/* Stratosphere section */
 /* For the inset element (which I didnt know about yet, I used https://www.w3schools.com/cssref/css_pr_inset.php for information and practice */
 #StratosphereList {
     position: relative;
@@ -757,16 +746,7 @@ svg {
         0 8px 30px #648cb059;
 }
 
-/* Spotify iframe styling within the capsule */
-#StratosphereList li iframe {
-    border-radius: 8px;
-    background: #14285099;
-    border: 1px solid #96bee633;
-}
-
-/* ================================
-   LEERDOELEN SECTION WRAPPER
-================================ */
+/* Thermosphere section */
 #ThermosphereList {
     position: relative;
     z-index: 3;
@@ -782,9 +762,7 @@ svg {
     touch-action: none;
 }
 
-/* ================================
-   CARD BASE
-================================ */
+/* Leerdoel kaarten */
 .leerdoel-card {
     position: relative;
     width: 100%;
@@ -806,7 +784,6 @@ svg {
     margin: 0 auto;
 }
 
-/* Hover = slight orbit lift */
 .leerdoel-card:hover {
     transform: translateY(-10px) scale(1.02);
     box-shadow:
@@ -814,9 +791,7 @@ svg {
         inset 0 0 40px #ffffff05;
 }
 
-/* ================================
-   CARD PLACEMENT (GRID)
-================================ */
+/* Kaarten grid */
 #ThermosphereList .leerdoel-card:nth-of-type(1) {
     grid-column: 1;
 }
@@ -833,9 +808,7 @@ svg {
     grid-column: 2;
 }
 
-/* ================================
-   TAGS
-================================ */
+/* Leerdoelen tags */
 .leerdoel-tags {
     display: flex;
     gap: 0.5rem;
@@ -855,9 +828,7 @@ svg {
     border: 1px solid #78b4ff33;
 }
 
-/* ================================
-   TEXT STYLES
-================================ */
+/* Leerdoelen text style */
 .leerdoel-card h2 {
     font-size: 1.3rem;
     margin-bottom: 0.6rem;
@@ -885,9 +856,7 @@ svg {
     opacity: 0;
 }
 
-/* ================================
-   SURFACE BUTTONS & POP-UPS
-================================ */
+/* Surface Section */
 
 .SurfaceList {
     display: flex;
@@ -1036,7 +1005,6 @@ svg {
 }
 
 /* Animations */
-
 @media (prefers-reduced-motion: no-preference) {
 
     /* Background & Environment Animations */
@@ -1259,9 +1227,7 @@ svg {
 
 }
 
-/* ========================================
-   THEME SUPPORT - LIGHT MODE
-   ======================================== */
+/* Lightmode */
 
 @media (prefers-color-scheme: light) {
     :root {
@@ -1280,9 +1246,7 @@ svg {
     }
 }
 
-/* ========================================
-   RESPONSIVE DESIGN
-   ======================================== */
+/* Mobile responsive */
 
 @media (max-width: 600px) {
     #top {
